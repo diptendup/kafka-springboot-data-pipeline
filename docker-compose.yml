@@ -58,3 +58,5 @@ services:
     depends_on:
       - db
       - kafka
+      - zookeeper
+      - zipkin
