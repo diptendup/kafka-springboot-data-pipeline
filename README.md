@@ -1,6 +1,12 @@
 # kafka-springboot-data-pipeline
 Real-Time Credit Card Transaction Processing System
 
+Prerequisite
+
+1. DBeaver / PgAdmin - Postgress
+2. Offset Explorer   - Kafka Messaging UI
+3. Postman           - API Testing
+
 Step1: Login to docker CLI
  
  Sept2: docker compose -f docker-compose.yml up -d
