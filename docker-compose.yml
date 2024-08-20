@@ -20,7 +20,7 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_HOST_NAME: local
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
   zipkin:
     image: openzipkin/zipkin
@@ -34,15 +34,10 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: mysecretpassword
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: local:9092
     ports:
       - "8080:8080"
       - "9090:9090"
-    depends_on:
-      - db
-      - kafka
-      - zookeeper
-      - zipkin
 
   springboot-consumer:
     image: udockerhub/spring-boot-consumer-docker
@@ -51,12 +46,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: mysecretpassword
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: local:9092
     ports:
       - "8081:8081"
       - "9091:9091"
-    depends_on:
-      - db
-      - kafka
-      - zookeeper
-      - zipkin
